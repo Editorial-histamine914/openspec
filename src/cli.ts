@@ -6,6 +6,8 @@ import { resolve } from "node:path";
 import { runInit } from "./commands/init.js";
 import { runSync } from "./commands/sync.js";
 import { runStatus } from "./commands/status.js";
+import { runDiff } from "./commands/diff.js";
+import { runAdd } from "./commands/add.js";
 import { loadConfig } from "./config.js";
 import { startWatcher } from "./watcher.js";
 import { installHook, removeHook } from "./hooks.js";
@@ -79,6 +81,25 @@ program
         console.log(chalk.yellow("⚠ Not a git repository. Initialize git first."));
       }
     }
+  });
+
+program
+  .command("diff")
+  .description("Preview what changes sync would make")
+  .action(async () => {
+    const root = resolve(".");
+    await runDiff(root);
+  });
+
+program
+  .command("add <name>")
+  .description("Create a new rule module")
+  .option("-p, --priority <number>", "Priority (lower = earlier)", "50")
+  .option("-t, --targets <list>", "Comma-separated target whitelist")
+  .option("--tags <list>", "Comma-separated tags")
+  .action(async (name: string, options) => {
+    const root = resolve(".");
+    await runAdd(root, name, options);
   });
 
 program

@@ -198,6 +198,8 @@ Commands:
   sync [--quiet]    Compile modules → generate all AI context files
   watch             Watch for module changes, auto-sync on save
   status            Show modules, targets, and sync status
+  diff              Preview what changes sync would make
+  add <name>        Create a new rule module (--priority, --targets, --tags)
   hooks [--remove]  Install/remove git pre-commit hook
   clean             Remove all generated files (only rulesync-managed)
   help [command]    Show help for a command
@@ -263,6 +265,34 @@ rulesync hooks --remove  # Remove it
 ```
 
 This ensures generated files never fall out of sync, even if a developer forgets to run `rulesync sync`.
+
+### `rulesync diff`
+
+Preview what changes `sync` would make without writing any files:
+
+```
+$ rulesync diff
+
+rulesync diff — preview changes
+
++ Claude Code (CLAUDE.md) (new file: CLAUDE.md)
+~ Cursor (.cursorrules) (.cursorrules)
+  - - Old rule
+  + - Updated rule
+  Gemini (GEMINI.md) — no changes
+
+Run 'rulesync sync' to apply these changes.
+```
+
+### `rulesync add <name>`
+
+Quickly scaffold a new module:
+
+```bash
+rulesync add "api security"                              # Creates api-security.md
+rulesync add auth --priority 15 --targets claude,cursor   # With options
+rulesync add styling --tags css,frontend                  # With tags
+```
 
 ### `rulesync status`
 
@@ -480,14 +510,17 @@ npm run build          # Compile TypeScript
 - [x] YAML frontmatter with priority, targeting, tags
 - [x] File watcher with debounced auto-sync
 - [x] Git pre-commit hook integration
-- [x] `init` / `sync` / `watch` / `status` / `clean` commands
-- [ ] `npx rulesync` — zero-install usage
+- [x] `init` / `sync` / `watch` / `status` / `clean` / `diff` / `add` commands
+- [x] `rulesync diff` — preview changes before syncing
+- [x] `rulesync add <name>` — scaffold new modules from CLI
+- [x] CI pipeline (GitHub Actions — Linux/macOS/Windows, Node 18/20/22)
+- [x] Test suite (vitest, 28 tests)
+- [ ] `npx rulesync` — zero-install usage (publish to npm)
 - [ ] MCP server mode for dynamic context
 - [ ] Module inheritance & composition
 - [ ] Template variable interpolation
 - [ ] Monorepo support
 - [ ] VS Code / JetBrains extensions
-- [ ] `rulesync diff` — preview changes before syncing
 - [ ] Remote module registries (share rules across repos)
 
 ---
