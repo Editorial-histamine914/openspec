@@ -1,0 +1,19 @@
+# Source (dist/ is the published build)
+src/
+tests/
+vitest.config.ts
+tsconfig.json
+.editorconfig
+
+# CI & GitHub
+.github/
+.openspec/
+
+# Assets (README references them via GitHub URL)
+assets/
+
+# IDE & local
+.claude/
+.idea/
+.vscode/
+*.tsbuildinfo

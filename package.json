@@ -6,6 +6,12 @@
   "bin": {
     "openspec": "./dist/cli.js"
   },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsx src/cli.ts",
@@ -22,10 +28,22 @@
     "copilot",
     "aider",
     "codex",
+    "openai",
+    "windsurf",
     "rules",
     "context",
-    "sync"
+    "sync",
+    "transpiler",
+    "developer-tools"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fernandomenuk/openspec.git"
+  },
+  "homepage": "https://github.com/fernandomenuk/openspec",
+  "bugs": {
+    "url": "https://github.com/fernandomenuk/openspec/issues"
+  },
   "author": "",
   "license": "MIT",
   "dependencies": {
