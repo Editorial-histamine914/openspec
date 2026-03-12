@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f23" />
+      <stop offset="100%" style="stop-color:#1a1a3e" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1" />
+      <stop offset="100%" style="stop-color:#a78bfa" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="200" height="200" rx="40" fill="url(#bg)"/>
+
+  <!-- Document -->
+  <g transform="translate(50, 35)">
+    <rect x="15" y="10" width="70" height="90" rx="8" fill="none" stroke="url(#accent)" stroke-width="4"/>
+    <!-- Content lines -->
+    <line x1="32" y1="35" x2="70" y2="35" stroke="#6366f1" stroke-width="3" stroke-linecap="round"/>
+    <line x1="32" y1="50" x2="65" y2="50" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round"/>
+    <line x1="32" y1="65" x2="58" y2="65" stroke="#a78bfa" stroke-width="3" stroke-linecap="round"/>
+    <line x1="32" y1="80" x2="52" y2="80" stroke="#c4b5fd" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Sync arrows -->
+  <g transform="translate(50, 35)">
+    <!-- Top-left arrow (incoming) -->
+    <path d="M 5 50 Q -15 15 25 3" stroke="#6366f1" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <polygon points="22,-3 32,6 20,8" fill="#6366f1"/>
+    <!-- Bottom-right arrow (outgoing) -->
+    <path d="M 95 70 Q 115 105 75 117" stroke="#a78bfa" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <polygon points="78,123 68,114 80,112" fill="#a78bfa"/>
+  </g>
+</svg>

@@ -1,0 +1,27 @@
+# Build output
+dist/
+*.tsbuildinfo
+
+# Dependencies
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.claude/
+
+# Generated AI context files (rulesync outputs)
+# These are generated — don't track them in the rulesync repo itself.
+CLAUDE.md
+.cursorrules
+GEMINI.md
+AGENTS.md
+.aiderrules
+.windsurfrules
+.github/copilot-instructions.md

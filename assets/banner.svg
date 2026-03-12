@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f23;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a3e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366f1" />
+      <stop offset="50%" style="stop-color:#8b5cf6" />
+      <stop offset="100%" style="stop-color:#a78bfa" />
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#6366f1" flood-opacity="0.3"/>
+    </filter>
+    <filter id="textshadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#6366f1" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="400" rx="16" fill="url(#bg)"/>
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.05" stroke="#8b5cf6" stroke-width="1">
+    <line x1="0" y1="50" x2="1200" y2="50"/><line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="150" x2="1200" y2="150"/><line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="250" x2="1200" y2="250"/><line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="350" x2="1200" y2="350"/>
+    <line x1="100" y1="0" x2="100" y2="400"/><line x1="200" y1="0" x2="200" y2="400"/>
+    <line x1="300" y1="0" x2="300" y2="400"/><line x1="400" y1="0" x2="400" y2="400"/>
+    <line x1="500" y1="0" x2="500" y2="400"/><line x1="600" y1="0" x2="600" y2="400"/>
+    <line x1="700" y1="0" x2="700" y2="400"/><line x1="800" y1="0" x2="800" y2="400"/>
+    <line x1="900" y1="0" x2="900" y2="400"/><line x1="1000" y1="0" x2="1000" y2="400"/>
+    <line x1="1100" y1="0" x2="1100" y2="400"/>
+  </g>
+
+  <!-- Decorative glow circles -->
+  <circle cx="180" cy="200" r="150" fill="url(#glow)" opacity="0.4"/>
+  <circle cx="1020" cy="200" r="120" fill="url(#glow)" opacity="0.3"/>
+
+  <!-- Logo icon: sync arrows forming a document -->
+  <g transform="translate(120, 120)" filter="url(#shadow)">
+    <!-- Document shape -->
+    <rect x="20" y="10" width="80" height="100" rx="8" fill="none" stroke="url(#accent)" stroke-width="3"/>
+    <!-- Lines inside document -->
+    <line x1="38" y1="38" x2="82" y2="38" stroke="#6366f1" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="38" y1="52" x2="75" y2="52" stroke="#8b5cf6" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="38" y1="66" x2="70" y2="66" stroke="#a78bfa" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="38" y1="80" x2="65" y2="80" stroke="#c4b5fd" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Sync arrows wrapping around document -->
+    <path d="M 10 55 Q -10 20 30 5" stroke="#6366f1" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <polygon points="28,0 35,8 24,9" fill="#6366f1"/>
+    <path d="M 110 65 Q 130 100 90 115" stroke="#a78bfa" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <polygon points="92,120 85,112 96,111" fill="#a78bfa"/>
+  </g>
+
+  <!-- Title -->
+  <text x="310" y="175" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="72" font-weight="800" fill="white" filter="url(#textshadow)">
+    Rule<tspan fill="url(#accent)">Sync</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="315" y="220" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" fill="#94a3b8" letter-spacing="0.5">
+    Define once. Sync everywhere.
+  </text>
+
+  <!-- Target badges -->
+  <g transform="translate(315, 250)">
+    <!-- Claude -->
+    <rect x="0" y="0" width="90" height="30" rx="15" fill="#1e1e3f" stroke="#6366f1" stroke-width="1"/>
+    <text x="45" y="20" font-family="monospace" font-size="12" fill="#a78bfa" text-anchor="middle">Claude</text>
+    <!-- Cursor -->
+    <rect x="100" y="0" width="90" height="30" rx="15" fill="#1e1e3f" stroke="#6366f1" stroke-width="1"/>
+    <text x="145" y="20" font-family="monospace" font-size="12" fill="#a78bfa" text-anchor="middle">Cursor</text>
+    <!-- Gemini -->
+    <rect x="200" y="0" width="90" height="30" rx="15" fill="#1e1e3f" stroke="#6366f1" stroke-width="1"/>
+    <text x="245" y="20" font-family="monospace" font-size="12" fill="#a78bfa" text-anchor="middle">Gemini</text>
+    <!-- Copilot -->
+    <rect x="300" y="0" width="90" height="30" rx="15" fill="#1e1e3f" stroke="#6366f1" stroke-width="1"/>
+    <text x="345" y="20" font-family="monospace" font-size="12" fill="#a78bfa" text-anchor="middle">Copilot</text>
+    <!-- Aider -->
+    <rect x="400" y="0" width="90" height="30" rx="15" fill="#1e1e3f" stroke="#6366f1" stroke-width="1"/>
+    <text x="445" y="20" font-family="monospace" font-size="12" fill="#a78bfa" text-anchor="middle">Aider</text>
+    <!-- Codex -->
+    <rect x="500" y="0" width="90" height="30" rx="15" fill="#1e1e3f" stroke="#6366f1" stroke-width="1"/>
+    <text x="545" y="20" font-family="monospace" font-size="12" fill="#a78bfa" text-anchor="middle">Codex</text>
+    <!-- Windsurf -->
+    <rect x="600" y="0" width="100" height="30" rx="15" fill="#1e1e3f" stroke="#6366f1" stroke-width="1"/>
+    <text x="650" y="20" font-family="monospace" font-size="12" fill="#a78bfa" text-anchor="middle">Windsurf</text>
+  </g>
+
+  <!-- Version badge -->
+  <g transform="translate(315, 300)">
+    <rect x="0" y="0" width="65" height="24" rx="12" fill="#6366f1" opacity="0.2"/>
+    <text x="32" y="16" font-family="monospace" font-size="11" fill="#a78bfa" text-anchor="middle">v0.1.0</text>
+    <rect x="75" y="0" width="120" height="24" rx="12" fill="#22c55e" opacity="0.15"/>
+    <text x="135" y="16" font-family="monospace" font-size="11" fill="#4ade80" text-anchor="middle">Open Source</text>
+  </g>
+</svg>
