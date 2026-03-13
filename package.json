@@ -1,6 +1,6 @@
 {
   "name": "@menukfernando/openspec",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Universal AI context transpiler. Define once. Spec everywhere.",
   "type": "module",
   "bin": {
@@ -40,7 +40,7 @@
     "type": "git",
     "url": "git+https://github.com/fernandomenuk/openspec.git"
   },
-  "homepage": "https://github.com/fernandomenuk/openspec",
+  "homepage": "https://fernandomenuk.github.io/openspec/",
   "bugs": {
     "url": "https://github.com/fernandomenuk/openspec/issues"
   },
