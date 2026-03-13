@@ -3,8 +3,10 @@
 </p>
 
 <p align="center">
+  <h1>🛑 Stop Context Drift.</h1>
   <strong>The universal AI context infrastructure.</strong><br/>
-  Let AI generate and manage your project rules, while OpenSpec automatically syncs them to every AI coding tool in your stack.
+  Sync your project rules across <strong>Cursor</strong>, <strong>Claude</strong>, <strong>Gemini</strong>, and <strong>Windsurf</strong> automatically. 
+  <br/>One source of truth. Seven outputs. Zero manual work.
 </p>
 
 <p align="center">
@@ -16,7 +18,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.2.0-6366f1?style=flat-square" alt="Version" />
+  <img src="https://img.shields.io/badge/version-0.2.2-6366f1?style=flat-square" alt="Version" />
   <img src="https://img.shields.io/badge/license-MIT-22c55e?style=flat-square" alt="License" />
   <img src="https://img.shields.io/badge/node-%3E%3D18-3b82f6?style=flat-square" alt="Node" />
   <img src="https://img.shields.io/badge/TypeScript-5.x-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
@@ -25,11 +27,32 @@
 
 ---
 
+## ✨ Why OpenSpec?
+
+If you use more than one AI tool, you have a **context fragmentation problem**. 
+- **Cursor** wants `.cursorrules`
+- **Claude Code** wants `CLAUDE.md`
+- **Aider** wants `.aiderrules`
+- **Copilot** wants `.github/copilot-instructions.md`
+
+When your project conventions change, you have to manually update **7+ different files**. Miss one, and your AI starts hallucinating outdated patterns. 
+
+**OpenSpec is the "Transpiler" for AI context.** You define your rules in clean, modular Markdown files, and OpenSpec generates the optimized format for every AI agent in your stack.
+
+### 🚀 Key Features
+- **🤖 AI-Native Workflow:** Designed to be managed *by* your AI agent.
+- **🔄 Universal Sync:** Supports Cursor, Claude, Gemini, Copilot, Aider, Codex, and Windsurf.
+- **🧠 Zero-Knowledge Setup:** `openspec analyze` scans your codebase and *tells* the AI what rules to write.
+- **🔌 Claude Code First:** Native plugin for the newest, most powerful AI coding tool.
+- **🛠️ Watch Mode:** Updates your context files in real-time as you edit your modules.
+
+---
+
 ## The Problem
 
-Every AI tool has its own context file (`CLAUDE.md`, `.cursorrules`, `GEMINI.md`, etc.). When project conventions evolve, you have to manually update **7 different files**. Miss one, and your AI agent starts writing inconsistent code. 
+Every AI tool has its own context file (CLAUDE.md, .cursorrules, GEMINI.md, etc.). When project conventions evolve, you have to manually update 7 different files. Miss one, and your AI agent starts writing inconsistent code. 
 
-OpenSpec solves this by acting as the **context layer** for your AI agents.
+OpenSpec solves this by acting as the context layer for your AI agents.
 
 ## The Solution
 
