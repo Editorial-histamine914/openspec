@@ -1062,15 +1062,13 @@
       </div>
       <div class="step reveal">
         <div class="step-number">2</div>
-        <h3>Define Rules</h3>
-        <p>Write conventions as Markdown modules with YAML frontmatter for targeting and priority.</p>
+        <h3>Run /openspec</h3>
+        <p>Claude Code analyzes your entire codebase and generates project-specific modules automatically. Zero manual work.</p>
         <div class="step-code">
-          <span class="cmt">---</span><br>
-          <span class="kw">name:</span> <span class="str">Frontend Rules</span><br>
-          <span class="kw">priority:</span> <span class="str">10</span><br>
-          <span class="kw">targets:</span> <span class="str">[claude, cursor]</span><br>
-          <span class="cmt">---</span><br>
-          <span class="str">Use functional components...</span>
+          <span class="kw">$</span> openspec setup-command<br>
+          <span class="cmt"># Then in Claude Code:</span><br>
+          <span class="str">/openspec</span><br>
+          <span class="cmt"># AI writes your modules for you</span>
         </div>
       </div>
       <div class="step reveal">
@@ -1113,8 +1111,8 @@
         <div class="feature-icon" style="background:rgba(52,211,153,0.1);color:#34d399;">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
         </div>
-        <h3>AI-Powered Generate</h3>
-        <p>Deep codebase analysis that detects your tech stack, samples source code, and outputs structured context for AI agents.</p>
+        <h3>/openspec Slash Command</h3>
+        <p>Run <code>/openspec</code> in Claude Code and it analyzes your entire codebase, then generates project-specific modules automatically. No manual editing.</p>
       </div>
       <div class="feature-card reveal">
         <div class="feature-icon" style="background:rgba(244,114,182,0.1);color:#f472b6;">
@@ -1252,6 +1250,13 @@
         <div>
           <div class="cmd-name">openspec hooks</div>
           <div class="cmd-desc">Install or remove git pre-commit hook for auto-sync</div>
+        </div>
+      </div>
+      <div class="cmd-card reveal">
+        <div class="cmd-icon">&#9889;</div>
+        <div>
+          <div class="cmd-name">openspec setup-command</div>
+          <div class="cmd-desc">Install <code>/openspec</code> slash command for Claude Code — AI analyzes your codebase and generates modules automatically</div>
         </div>
       </div>
     </div>

@@ -12,13 +12,14 @@ import { runGenerate } from "./commands/generate.js";
 import { loadConfig } from "./config.js";
 import { startWatcher } from "./watcher.js";
 import { installHook, removeHook } from "./hooks.js";
+import { runSetupCommand } from "./commands/setup-command.js";
 
 const program = new Command();
 
 program
   .name("openspec")
   .description("Universal AI context transpiler. Define once. Spec everywhere.")
-  .version("0.1.0");
+  .version("0.2.0");
 
 program
   .command("init")
@@ -112,6 +113,14 @@ program
   .action(async (options) => {
     const root = resolve(".");
     await runGenerate(root, options);
+  });
+
+program
+  .command("setup-command")
+  .description("Install /openspec slash command for Claude Code")
+  .action(async () => {
+    const root = resolve(".");
+    await runSetupCommand(root);
   });
 
 program

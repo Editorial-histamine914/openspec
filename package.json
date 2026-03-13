@@ -1,6 +1,6 @@
 {
   "name": "@menukfernando/openspec",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Universal AI context transpiler. Define once. Spec everywhere.",
   "type": "module",
   "bin": {

@@ -145,7 +145,9 @@ export async function runInit(projectRoot: string): Promise<void> {
   console.log(chalk.dim("  .openspec/modules/testing.md  — Testing rules"));
   console.log();
   console.log("  Next steps:");
-  console.log(chalk.cyan("  1. Edit the modules in .openspec/modules/"));
-  console.log(chalk.cyan("  2. Run 'openspec sync' to generate all AI context files"));
-  console.log(chalk.cyan("  3. Run 'openspec watch' for auto-sync during development"));
+  console.log(chalk.cyan("  1. Run 'openspec setup-command' to install the /openspec Claude Code slash command"));
+  console.log(chalk.cyan("     Then run /openspec in Claude Code to auto-generate project-specific modules"));
+  console.log(chalk.cyan("  2. Or manually edit the modules in .openspec/modules/"));
+  console.log(chalk.cyan("  3. Run 'openspec sync' to generate all AI context files"));
+  console.log(chalk.cyan("  4. Run 'openspec watch' for auto-sync during development"));
 }
