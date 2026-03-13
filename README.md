@@ -69,13 +69,16 @@ When you update a convention — say, _"always use parameterized queries"_ — y
 
 ```bash
 # Install
-npm install -g openspec
+npm install -g @menukfernando/openspec
 
 # Initialize in your project
 cd your-project
-openspec init
+npx @menukfernando/openspec init
 
-# Edit your rules
+# Option A: Let AI analyze your codebase and write rules for you
+openspec generate   # outputs codebase analysis for your AI agent
+
+# Option B: Manually edit your rules
 # (customize the modules in .openspec/modules/)
 
 # Generate all AI context files
@@ -195,6 +198,7 @@ Usage: openspec [command] [options]
 
 Commands:
   init              Scaffold .openspec/ with config + example modules
+  generate          Analyze codebase and output context for AI-powered rule generation
   sync [--quiet]    Compile modules → generate all AI context files
   watch             Watch for module changes, auto-sync on save
   status            Show modules, targets, and sync status
@@ -217,6 +221,54 @@ Creates the `.openspec/` directory with a config file and four example modules:
     frontend.md     ← Frontend conventions
     backend.md      ← Backend conventions
     testing.md      ← Testing standards
+```
+
+### `openspec generate`
+
+Performs deep codebase analysis — reading package.json, config files, directory structure, and actual source code — then outputs a structured context document. When run inside an AI agent (Claude Code, Cursor, etc.), the agent reads this output and uses it to write rich, project-specific module files.
+
+```
+$ openspec generate
+
+Analyzing codebase...
+# Codebase Analysis — my-app
+
+## Tech Stack
+- **Languages**: TypeScript (42 files)
+- **Frontend**: React ^18.2.0
+- **Backend**: Express ^4.18.0
+- **Build**: Vite (vite.config.ts)
+- **Testing**: Vitest (vitest.config.ts)
+- **Styling**: Tailwind CSS
+- **Database**: Prisma
+...
+
+## Code Samples
+### Component Example (src/components/UserCard.tsx)
+...
+
+## Instructions for AI Agent
+Using the analysis above, generate the following OpenSpec module files...
+```
+
+Options:
+
+```bash
+openspec generate              # Markdown output to stdout (default)
+openspec generate --json       # JSON output for programmatic use
+openspec generate -o report.md # Write analysis to file
+openspec generate -q           # Suppress non-essential output
+```
+
+**Typical workflow with an AI agent:**
+
+```bash
+# In Claude Code, Cursor, etc.:
+# "Run openspec generate and fill in my rules"
+
+openspec generate   # AI reads the output
+# → AI writes .openspec/modules/shared.md, frontend.md, backend.md, testing.md
+openspec sync       # Generate all 7 AI context files
 ```
 
 ### `openspec sync`
@@ -460,8 +512,19 @@ openspec/
 │   ├── types.ts             # TypeScript types & defaults
 │   ├── commands/
 │   │   ├── init.ts          # 'openspec init' scaffolding
+│   │   ├── generate.ts      # 'openspec generate' handler
 │   │   ├── sync.ts          # 'openspec sync' handler
 │   │   └── status.ts        # 'openspec status' handler
+│   ├── scanner/
+│   │   ├── types.ts          # ScanResult interfaces
+│   │   ├── context.ts        # Builds DetectorContext
+│   │   ├── sampler.ts        # Source file sampling
+│   │   ├── formatter.ts      # Markdown/JSON output formatting
+│   │   └── detectors/        # Stack detection modules
+│   │       ├── index.ts      # Orchestrator
+│   │       ├── language.ts   # TS/JS/Python/Go/Rust
+│   │       ├── framework.ts  # React/Next/Express/etc
+│   │       └── ...           # build-tool, testing, linting, etc.
 │   └── targets/
 │       └── index.ts         # Per-target renderers
 ├── assets/
@@ -513,9 +576,10 @@ npm run build          # Compile TypeScript
 - [x] `init` / `sync` / `watch` / `status` / `clean` / `diff` / `add` commands
 - [x] `openspec diff` — preview changes before syncing
 - [x] `openspec add <name>` — scaffold new modules from CLI
+- [x] `openspec generate` — AI-powered codebase analysis + rule generation
 - [x] CI pipeline (GitHub Actions — Linux/macOS/Windows, Node 18/20/22)
-- [x] Test suite (vitest, 28 tests)
-- [ ] `npx openspec` — zero-install usage (publish to npm)
+- [x] Test suite (vitest, 68 tests)
+- [ ] `npx @menukfernando/openspec` — zero-install usage (publish to npm)
 - [ ] MCP server mode for dynamic context
 - [ ] Module inheritance & composition
 - [ ] Template variable interpolation
@@ -533,5 +597,5 @@ MIT — see [LICENSE](LICENSE) for details.
 
 <p align="center">
   <strong>Stop copy-pasting AI rules.</strong><br/>
-  <code>npx openspec init && npx openspec sync</code>
+  <code>npx @menukfernando/openspec init && npx @menukfernando/openspec sync</code>
 </p>
