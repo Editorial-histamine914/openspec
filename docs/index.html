@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO -->
+  <title>OpenSpec — Define once. Spec everywhere. | Universal AI Context Transpiler</title>
+  <meta name="description" content="Stop copy-pasting AI rules into 7 different files. OpenSpec is the universal AI context transpiler — write project rules once, generate context files for Claude Code, Cursor, GitHub Copilot, Gemini, Aider, Codex, and Windsurf automatically.">
+  <meta name="keywords" content="openspec, AI context, AI rules, claude code, cursor rules, cursorrules, copilot instructions, gemini rules, aider rules, windsurf rules, codex agents, AI coding tools, context transpiler, developer tools, CLI tool, CLAUDE.md, .cursorrules, GEMINI.md, AI code generation, project conventions">
+  <meta name="author" content="Menuk Fernando">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://fernandomenuk.github.io/openspec/">
+
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fernandomenuk.github.io/openspec/">
+  <meta property="og:title" content="OpenSpec — Define once. Spec everywhere.">
+  <meta property="og:description" content="The universal AI context transpiler. Write your project rules once, generate context files for Claude, Cursor, Copilot, Gemini, Aider, Codex & Windsurf. One source of truth. Seven outputs. Zero drift.">
+  <meta property="og:image" content="https://fernandomenuk.github.io/openspec/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="OpenSpec — Define once. Spec everywhere. The universal AI context transpiler.">
+  <meta property="og:site_name" content="OpenSpec">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://fernandomenuk.github.io/openspec/">
+  <meta name="twitter:title" content="OpenSpec — Define once. Spec everywhere.">
+  <meta name="twitter:description" content="Stop copy-pasting AI rules into 7 files. One source of truth for Claude, Cursor, Copilot, Gemini, Aider, Codex & Windsurf.">
+  <meta name="twitter:image" content="https://fernandomenuk.github.io/openspec/og-image.png">
+  <meta name="twitter:image:alt" content="OpenSpec — The universal AI context transpiler">
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "OpenSpec",
+    "description": "The universal AI context transpiler. Write your project rules once, generate context files for every AI coding tool automatically.",
+    "url": "https://fernandomenuk.github.io/openspec/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Menuk Fernando",
+      "url": "https://github.com/fernandomenuk"
+    },
+    "softwareVersion": "0.1.0",
+    "license": "https://opensource.org/licenses/MIT",
+    "codeRepository": "https://github.com/fernandomenuk/openspec",
+    "programmingLanguage": "TypeScript",
+    "keywords": "AI context, CLI, developer tools, Claude, Cursor, Copilot, Gemini"
+  }
+  </script>
+
+  <!-- Favicon (inline SVG as data URI) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%230f0f23'/%3E%3Cstop offset='100%25' style='stop-color:%231a1a3e'/%3E%3C/linearGradient%3E%3ClinearGradient id='a' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%236366f1'/%3E%3Cstop offset='100%25' style='stop-color:%23a78bfa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='200' height='200' rx='40' fill='url(%23b)'/%3E%3Cg transform='translate(50,35)'%3E%3Crect x='15' y='10' width='70' height='90' rx='8' fill='none' stroke='url(%23a)' stroke-width='4'/%3E%3Cline x1='32' y1='35' x2='70' y2='35' stroke='%236366f1' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='32' y1='50' x2='65' y2='50' stroke='%238b5cf6' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='32' y1='65' x2='58' y2='65' stroke='%23a78bfa' stroke-width='3' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #050510;
+      --bg-card: #0a0a1a;
+      --bg-card-hover: #0f0f25;
+      --border: #1a1a3e;
+      --border-hover: #2a2a5e;
+      --text: #e2e8f0;
+      --text-muted: #64748b;
+      --text-dim: #475569;
+      --accent: #6366f1;
+      --accent-light: #818cf8;
+      --accent-lighter: #a78bfa;
+      --accent-glow: rgba(99, 102, 241, 0.15);
+      --purple: #a78bfa;
+      --pink: #f472b6;
+      --cyan: #22d3ee;
+      --green: #34d399;
+      --orange: #fb923c;
+      --yellow: #fbbf24;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── Glow background ────────────────────── */
+    .glow-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .glow-bg::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      left: -20%;
+      width: 80%;
+      height: 80%;
+      background: radial-gradient(ellipse, rgba(99,102,241,0.08) 0%, transparent 70%);
+      animation: drift 20s ease-in-out infinite;
+    }
+    .glow-bg::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      right: -20%;
+      width: 70%;
+      height: 70%;
+      background: radial-gradient(ellipse, rgba(167,139,250,0.06) 0%, transparent 70%);
+      animation: drift 25s ease-in-out infinite reverse;
+    }
+    @keyframes drift {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      33% { transform: translate(30px, -30px) rotate(1deg); }
+      66% { transform: translate(-20px, 20px) rotate(-1deg); }
+    }
+
+    /* ── Grid background ────────────────────── */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        linear-gradient(rgba(99,102,241,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99,102,241,0.03) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 20%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 20%, transparent 100%);
+    }
+
+    /* ── Nav ─────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 24px;
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      background: rgba(5, 5, 16, 0.8);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .nav-logo svg { width: 32px; height: 32px; }
+    .nav-logo span {
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: var(--accent);
+      color: white !important;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+    .nav-cta:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* ── Section defaults ────────────────────── */
+    section { padding: 120px 24px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+    .section-label::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent);
+    }
+    .section-title {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    /* ── Hero ─────────────────────────────────── */
+    .hero {
+      padding: 180px 24px 120px;
+      text-align: center;
+      position: relative;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px 6px 8px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(99,102,241,0.2);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent-light);
+      margin-bottom: 32px;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .hero h1 {
+      font-size: clamp(48px, 8vw, 80px);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      animation: fadeUp 0.8s ease 0.1s both;
+    }
+    .hero h1 .gradient {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 40%, var(--pink) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto 48px;
+      line-height: 1.7;
+      animation: fadeUp 0.8s ease 0.2s both;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s ease 0.3s both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 0 20px rgba(99,102,241,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .btn-primary:hover {
+      background: var(--accent-light);
+      box-shadow: 0 0 30px rgba(99,102,241,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    /* ── Install box ─────────────────────────── */
+    .install-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 32px;
+      padding: 12px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      animation: fadeUp 0.8s ease 0.4s both;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .install-box:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+    }
+    .install-box .prompt { color: var(--accent-light); }
+    .install-box .cmd { color: var(--text); }
+    .install-box .copy-icon {
+      color: var(--text-dim);
+      transition: color 0.2s;
+    }
+    .install-box:hover .copy-icon { color: var(--text-muted); }
+
+    /* ── Hero visual ─────────────────────────── */
+    .hero-visual {
+      margin-top: 80px;
+      animation: fadeUp 1s ease 0.5s both;
+    }
+    .terminal {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #0c0c1d;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(99,102,241,0.05),
+        0 20px 60px rgba(0,0,0,0.5),
+        0 0 100px rgba(99,102,241,0.05);
+    }
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10,10,26,0.8);
+    }
+    .terminal-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .terminal-dot:nth-child(1) { background: #ff5f56; }
+    .terminal-dot:nth-child(2) { background: #ffbd2e; }
+    .terminal-dot:nth-child(3) { background: #27c93f; }
+    .terminal-title {
+      flex: 1;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-dim);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .terminal-body {
+      padding: 24px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      min-height: 280px;
+    }
+    .terminal-body .line { display: flex; gap: 8px; }
+    .terminal-body .prompt-sign { color: var(--accent-light); }
+    .terminal-body .command { color: var(--text); }
+    .terminal-body .comment { color: var(--text-dim); font-style: italic; }
+    .terminal-body .output { color: var(--text-muted); }
+    .terminal-body .success { color: var(--green); }
+    .terminal-body .file { color: var(--cyan); }
+    .terminal-body .target { color: var(--purple); }
+    .terminal-body .number { color: var(--orange); }
+    .terminal-body .arrow { color: var(--accent-lighter); }
+
+    /* ── Logos ────────────────────────────────── */
+    .logos-section {
+      padding: 60px 24px 80px;
+      text-align: center;
+    }
+    .logos-label {
+      font-size: 13px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      margin-bottom: 40px;
+    }
+    .logos-grid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
+      opacity: 0.5;
+    }
+    .logos-grid .logo-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: opacity 0.3s;
+    }
+    .logos-grid .logo-item:hover { opacity: 0.8; }
+    .logo-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    /* ── Problem ──────────────────────────────── */
+    .problem { background: linear-gradient(180deg, var(--bg) 0%, #08081a 100%); }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 48px;
+      align-items: center;
+    }
+    .problem-left {}
+    .problem-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .problem-title .red { color: #f87171; }
+    .problem-desc {
+      color: var(--text-muted);
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+    .pain-points { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+    .pain-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+    .pain-points .icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: rgba(248,113,113,0.1);
+      color: #f87171;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    .file-mess {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .file-mess-item {
+      padding: 14px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .file-mess-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .file-mess-item:hover { border-color: var(--border-hover); }
+    .file-mess-item:hover::before { opacity: 1; }
+    .file-mess-item .fname { color: var(--text); font-weight: 500; margin-bottom: 4px; }
+    .file-mess-item .ftool { font-size: 11px; color: var(--text-dim); }
+
+    /* ── How it works ─────────────────────────── */
+    .how-it-works { background: #08081a; }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 64px;
+    }
+    .step {
+      position: relative;
+      padding: 36px 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: all 0.3s;
+    }
+    .step:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .step-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(99,102,241,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--accent-light);
+      margin-bottom: 20px;
+    }
+    .step h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .step p {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .step-code {
+      margin-top: 16px;
+      padding: 12px 16px;
+      background: rgba(0,0,0,0.3);
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+      overflow-x: auto;
+    }
+    .step-code .kw { color: var(--accent-light); }
+    .step-code .str { color: var(--green); }
+    .step-code .cmt { color: var(--text-dim); }
+
+    /* ── Features ─────────────────────────────── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 64px;
+    }
+    .feature-card {
+      padding: 32px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: all 0.3s;
+    }
+    .feature-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 18px;
+    }
+    .feature-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── Targets ──────────────────────────────── */
+    .targets { background: linear-gradient(180deg, var(--bg) 0%, #08081a 100%); }
+    .targets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .target-card {
+      padding: 24px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .target-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+    }
+    .target-file {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 10px;
+      word-break: break-all;
+    }
+    .target-name {
+      font-weight: 700;
+      font-size: 15px;
+      margin-top: 12px;
+    }
+    .target-emoji { font-size: 28px; margin-bottom: 4px; }
+
+    /* ── Commands ──────────────────────────────── */
+    .commands { background: #08081a; }
+    .commands-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .cmd-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      transition: all 0.3s;
+    }
+    .cmd-card:hover { border-color: var(--border-hover); }
+    .cmd-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent-light);
+      margin-bottom: 4px;
+    }
+    .cmd-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .cmd-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--accent-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 16px;
+    }
+
+    /* ── CTA ──────────────────────────────────── */
+    .cta {
+      text-align: center;
+      position: relative;
+    }
+    .cta-box {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 64px 48px;
+      background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(167,139,250,0.05) 100%);
+      border: 1px solid rgba(99,102,241,0.15);
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(ellipse at center, rgba(99,102,241,0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cta-box h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .cta-box p {
+      color: var(--text-muted);
+      font-size: 17px;
+      margin-bottom: 32px;
+      position: relative;
+    }
+    .cta-actions { position: relative; display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+    /* ── Footer ───────────────────────────────── */
+    footer {
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-inner span {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .footer-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text); }
+
+    /* ── Responsive ───────────────────────────── */
+    @media (max-width: 900px) {
+      .problem-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .commands-grid { grid-template-columns: 1fr; }
+      .file-mess { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: block; }
+      .features-grid { grid-template-columns: 1fr; }
+      .targets-grid { grid-template-columns: repeat(2, 1fr); }
+      .file-mess { grid-template-columns: 1fr; }
+      .hero { padding: 140px 20px 80px; }
+      section { padding: 80px 20px; }
+      .footer-inner { flex-direction: column; gap: 16px; }
+      .install-box { font-size: 12px; }
+      .cta-box { padding: 40px 24px; }
+    }
+
+    /* ── Scroll animations ────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<div class="glow-bg"></div>
+<div class="grid-bg"></div>
+
+<!-- ── Nav ──────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#0f0f23" />
+            <stop offset="100%" style="stop-color:#1a1a3e" />
+          </linearGradient>
+          <linearGradient id="accent-g" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#6366f1" />
+            <stop offset="100%" style="stop-color:#a78bfa" />
+          </linearGradient>
+        </defs>
+        <rect width="200" height="200" rx="40" fill="url(#bg)"/>
+        <g transform="translate(50, 35)">
+          <rect x="15" y="10" width="70" height="90" rx="8" fill="none" stroke="url(#accent-g)" stroke-width="4"/>
+          <line x1="32" y1="35" x2="70" y2="35" stroke="#6366f1" stroke-width="3" stroke-linecap="round"/>
+          <line x1="32" y1="50" x2="65" y2="50" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round"/>
+          <line x1="32" y1="65" x2="58" y2="65" stroke="#a78bfa" stroke-width="3" stroke-linecap="round"/>
+          <line x1="32" y1="80" x2="52" y2="80" stroke="#c4b5fd" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <g transform="translate(50, 35)">
+          <path d="M 5 50 Q -15 15 25 3" stroke="#6366f1" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <polygon points="22,-3 32,6 20,8" fill="#6366f1"/>
+          <path d="M 95 70 Q 115 105 75 117" stroke="#a78bfa" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <polygon points="78,123 68,114 80,112" fill="#a78bfa"/>
+        </g>
+      </svg>
+      <span>OpenSpec</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#problem">Problem</a></li>
+      <li><a href="#how-it-works">How it Works</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#targets">Targets</a></li>
+      <li><a href="#commands">Commands</a></li>
+      <li><a href="https://github.com/fernandomenuk/openspec" class="nav-cta">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a></li>
+    </ul>
+    <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Hero ─────────────────────────────── -->
+<section class="hero">
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    Now open source — v0.1.0
+  </div>
+  <h1>
+    Define once.<br>
+    <span class="gradient">Spec everywhere.</span>
+  </h1>
+  <p class="hero-sub">
+    The universal AI context transpiler. Write your project rules once and generate context files for every AI coding tool — automatically.
+  </p>
+  <div class="hero-actions">
+    <a href="https://github.com/fernandomenuk/openspec" class="btn btn-primary">
+      <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      Get Started
+    </a>
+    <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
+  </div>
+  <div class="install-box" onclick="navigator.clipboard.writeText('npx @menukfernando/openspec init');this.querySelector('.copy-icon').innerHTML='&#10003;'">
+    <span class="prompt">$</span>
+    <span class="cmd">npx @menukfernando/openspec init</span>
+    <span class="copy-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+    </span>
+  </div>
+
+  <!-- Terminal demo -->
+  <div class="hero-visual">
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="terminal-dot"></span>
+        <span class="terminal-dot"></span>
+        <span class="terminal-dot"></span>
+        <span class="terminal-title">~/my-project</span>
+      </div>
+      <div class="terminal-body" id="terminal-demo">
+        <div class="line"><span class="prompt-sign">$</span> <span class="command">openspec sync</span></div>
+        <div class="line"><span class="output">&nbsp;</span></div>
+        <div class="line"><span class="success">&#10003;</span> <span class="output">Loaded <span class="number">4</span> modules from <span class="file">.openspec/modules/</span></span></div>
+        <div class="line"><span class="output">&nbsp;</span></div>
+        <div class="line"><span class="arrow">&rarr;</span> <span class="target">CLAUDE.md</span> <span class="output">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="success">written</span></div>
+        <div class="line"><span class="arrow">&rarr;</span> <span class="target">.cursorrules</span> <span class="output">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="success">written</span></div>
+        <div class="line"><span class="arrow">&rarr;</span> <span class="target">GEMINI.md</span> <span class="output">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="success">written</span></div>
+        <div class="line"><span class="arrow">&rarr;</span> <span class="target">.github/copilot-instructions.md</span> <span class="success">written</span></div>
+        <div class="line"><span class="arrow">&rarr;</span> <span class="target">.aiderrules</span> <span class="output">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="success">written</span></div>
+        <div class="line"><span class="arrow">&rarr;</span> <span class="target">AGENTS.md</span> <span class="output">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="success">written</span></div>
+        <div class="line"><span class="arrow">&rarr;</span> <span class="target">.windsurfrules</span> <span class="output">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="success">written</span></div>
+        <div class="line"><span class="output">&nbsp;</span></div>
+        <div class="line"><span class="success">&#10003;</span> <span class="output">Synced <span class="number">7</span> targets in <span class="number">12ms</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Logos ────────────────────────────── -->
+<section class="logos-section">
+  <div class="logos-label">Works with every AI coding tool</div>
+  <div class="logos-grid">
+    <div class="logo-item"><span class="logo-icon" style="background:rgba(99,102,241,0.15);color:#818cf8;">C</span> Claude Code</div>
+    <div class="logo-item"><span class="logo-icon" style="background:rgba(34,211,238,0.15);color:#22d3ee;">&#9670;</span> Cursor</div>
+    <div class="logo-item"><span class="logo-icon" style="background:rgba(251,191,36,0.15);color:#fbbf24;">G</span> Gemini</div>
+    <div class="logo-item"><span class="logo-icon" style="background:rgba(244,114,182,0.15);color:#f472b6;">&#9679;</span> Copilot</div>
+    <div class="logo-item"><span class="logo-icon" style="background:rgba(52,211,153,0.15);color:#34d399;">A</span> Aider</div>
+    <div class="logo-item"><span class="logo-icon" style="background:rgba(251,146,60,0.15);color:#fb923c;">&#11042;</span> Codex</div>
+    <div class="logo-item"><span class="logo-icon" style="background:rgba(167,139,250,0.15);color:#a78bfa;">W</span> Windsurf</div>
+  </div>
+</section>
+
+<!-- ── Problem ─────────────────────────── -->
+<section class="problem" id="problem">
+  <div class="container">
+    <div class="problem-grid reveal">
+      <div class="problem-left">
+        <div class="section-label">The Problem</div>
+        <h2 class="problem-title">
+          Your AI tools are <span class="red">out of sync.</span>
+        </h2>
+        <p class="problem-desc">
+          Every AI coding tool uses its own context file. Teams end up copy-pasting rules into 7+ files. When conventions change, updates drift — and different tools follow different rules.
+        </p>
+        <ul class="pain-points">
+          <li>
+            <span class="icon">&times;</span>
+            <span>Copy-paste the same rules into 7 different files</span>
+          </li>
+          <li>
+            <span class="icon">&times;</span>
+            <span>Update one file, forget the rest — rules drift silently</span>
+          </li>
+          <li>
+            <span class="icon">&times;</span>
+            <span>Different AI tools generate inconsistent code</span>
+          </li>
+          <li>
+            <span class="icon">&times;</span>
+            <span>No single source of truth for project conventions</span>
+          </li>
+        </ul>
+      </div>
+      <div class="file-mess">
+        <div class="file-mess-item">
+          <div class="fname">CLAUDE.md</div>
+          <div class="ftool">Claude Code</div>
+        </div>
+        <div class="file-mess-item">
+          <div class="fname">.cursorrules</div>
+          <div class="ftool">Cursor</div>
+        </div>
+        <div class="file-mess-item">
+          <div class="fname">GEMINI.md</div>
+          <div class="ftool">Gemini CLI</div>
+        </div>
+        <div class="file-mess-item">
+          <div class="fname">.aiderrules</div>
+          <div class="ftool">Aider</div>
+        </div>
+        <div class="file-mess-item">
+          <div class="fname">copilot-instructions.md</div>
+          <div class="ftool">GitHub Copilot</div>
+        </div>
+        <div class="file-mess-item">
+          <div class="fname">AGENTS.md</div>
+          <div class="ftool">OpenAI Codex</div>
+        </div>
+        <div class="file-mess-item">
+          <div class="fname">.windsurfrules</div>
+          <div class="ftool">Windsurf</div>
+        </div>
+        <div class="file-mess-item" style="border-style:dashed;opacity:0.5;">
+          <div class="fname">+ more coming...</div>
+          <div class="ftool">New tools daily</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── How it works ────────────────────── -->
+<section class="how-it-works" id="how-it-works">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">Three steps. Zero drift.</h2>
+      <p class="section-subtitle">Write your rules as modular Markdown files. OpenSpec compiles them into every format your tools need.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-number">1</div>
+        <h3>Initialize</h3>
+        <p>Scaffold your <code>.openspec/</code> directory with config and starter modules.</p>
+        <div class="step-code">
+          <span class="kw">$</span> openspec init<br>
+          <span class="cmt"># Creates .openspec/config.yaml</span><br>
+          <span class="cmt"># Creates .openspec/modules/*.md</span>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-number">2</div>
+        <h3>Define Rules</h3>
+        <p>Write conventions as Markdown modules with YAML frontmatter for targeting and priority.</p>
+        <div class="step-code">
+          <span class="cmt">---</span><br>
+          <span class="kw">name:</span> <span class="str">Frontend Rules</span><br>
+          <span class="kw">priority:</span> <span class="str">10</span><br>
+          <span class="kw">targets:</span> <span class="str">[claude, cursor]</span><br>
+          <span class="cmt">---</span><br>
+          <span class="str">Use functional components...</span>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-number">3</div>
+        <h3>Sync</h3>
+        <p>One command generates all 7 context files, each intelligently adapted to its target tool.</p>
+        <div class="step-code">
+          <span class="kw">$</span> openspec sync<br>
+          <span class="str">&#10003; Synced 7 targets in 12ms</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Features ────────────────────────── -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Features</div>
+      <h2 class="section-title">Built for real workflows.</h2>
+      <p class="section-subtitle">Everything you need to keep your AI tools aligned with your team's conventions.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon" style="background:rgba(99,102,241,0.1);color:#818cf8;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <h3>Modular Rules</h3>
+        <p>Organize rules into focused Markdown modules — shared, frontend, backend, testing, or custom.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon" style="background:rgba(34,211,238,0.1);color:#22d3ee;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </div>
+        <h3>Smart Adapters</h3>
+        <p>Each target gets intelligently adapted output. Claude prefers dense context, Cursor gets glob hints, Copilot gets nested headings.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon" style="background:rgba(52,211,153,0.1);color:#34d399;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h3>AI-Powered Generate</h3>
+        <p>Deep codebase analysis that detects your tech stack, samples source code, and outputs structured context for AI agents.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon" style="background:rgba(244,114,182,0.1);color:#f472b6;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h3>Watch Mode</h3>
+        <p>Auto-sync on file changes. Edit a module, and all 7 targets update instantly in the background.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon" style="background:rgba(251,191,36,0.1);color:#fbbf24;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Git Hooks</h3>
+        <p>Auto-sync before every commit with a pre-commit hook. No stale files, ever.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon" style="background:rgba(251,146,60,0.1);color:#fb923c;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        </div>
+        <h3>Diff Preview</h3>
+        <p>See exactly what changes sync would make before writing anything with <code>openspec diff</code>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Targets ─────────────────────────── -->
+<section class="targets" id="targets">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Supported Targets</div>
+      <h2 class="section-title">One source. Seven outputs.</h2>
+      <p class="section-subtitle">Every major AI coding tool, supported out of the box. More targets added regularly.</p>
+    </div>
+    <div class="targets-grid reveal">
+      <div class="target-card">
+        <div class="target-emoji">&#9672;</div>
+        <div class="target-name">Claude Code</div>
+        <div class="target-file">CLAUDE.md</div>
+      </div>
+      <div class="target-card">
+        <div class="target-emoji">&#9670;</div>
+        <div class="target-name">Cursor</div>
+        <div class="target-file">.cursorrules</div>
+      </div>
+      <div class="target-card">
+        <div class="target-emoji">&#10022;</div>
+        <div class="target-name">Gemini</div>
+        <div class="target-file">GEMINI.md</div>
+      </div>
+      <div class="target-card">
+        <div class="target-emoji">&#9673;</div>
+        <div class="target-name">GitHub Copilot</div>
+        <div class="target-file">.github/copilot-instructions.md</div>
+      </div>
+      <div class="target-card">
+        <div class="target-emoji">&#9656;</div>
+        <div class="target-name">Aider</div>
+        <div class="target-file">.aiderrules</div>
+      </div>
+      <div class="target-card">
+        <div class="target-emoji">&#11042;</div>
+        <div class="target-name">Codex</div>
+        <div class="target-file">AGENTS.md</div>
+      </div>
+      <div class="target-card">
+        <div class="target-emoji">&#10048;</div>
+        <div class="target-name">Windsurf</div>
+        <div class="target-file">.windsurfrules</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Commands ─────────────────────────── -->
+<section class="commands" id="commands">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">CLI</div>
+      <h2 class="section-title">Powerful commands.</h2>
+      <p class="section-subtitle">A complete CLI toolkit for managing your AI context files.</p>
+    </div>
+    <div class="commands-grid">
+      <div class="cmd-card reveal">
+        <div class="cmd-icon">&#9654;</div>
+        <div>
+          <div class="cmd-name">openspec init</div>
+          <div class="cmd-desc">Scaffold .openspec/ with config and starter modules</div>
+        </div>
+      </div>
+      <div class="cmd-card reveal">
+        <div class="cmd-icon">&#8635;</div>
+        <div>
+          <div class="cmd-name">openspec sync</div>
+          <div class="cmd-desc">Compile modules and generate all target files</div>
+        </div>
+      </div>
+      <div class="cmd-card reveal">
+        <div class="cmd-icon">&#9881;</div>
+        <div>
+          <div class="cmd-name">openspec generate</div>
+          <div class="cmd-desc">Analyze your codebase for AI-powered rule generation</div>
+        </div>
+      </div>
+      <div class="cmd-card reveal">
+        <div class="cmd-icon">&#9673;</div>
+        <div>
+          <div class="cmd-name">openspec watch</div>
+          <div class="cmd-desc">Auto-sync on file changes — edit once, update everywhere</div>
+        </div>
+      </div>
+      <div class="cmd-card reveal">
+        <div class="cmd-icon">&#9776;</div>
+        <div>
+          <div class="cmd-name">openspec status</div>
+          <div class="cmd-desc">Show all modules, targets, and current sync status</div>
+        </div>
+      </div>
+      <div class="cmd-card reveal">
+        <div class="cmd-icon">&#177;</div>
+        <div>
+          <div class="cmd-name">openspec diff</div>
+          <div class="cmd-desc">Preview what changes sync would make before writing</div>
+        </div>
+      </div>
+      <div class="cmd-card reveal">
+        <div class="cmd-icon">&#43;</div>
+        <div>
+          <div class="cmd-name">openspec add &lt;name&gt;</div>
+          <div class="cmd-desc">Scaffold a new rule module with priority and target options</div>
+        </div>
+      </div>
+      <div class="cmd-card reveal">
+        <div class="cmd-icon">&#128279;</div>
+        <div>
+          <div class="cmd-name">openspec hooks</div>
+          <div class="cmd-desc">Install or remove git pre-commit hook for auto-sync</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ──────────────────────────────── -->
+<section class="cta">
+  <div class="container">
+    <div class="cta-box reveal">
+      <h2>Stop copy-pasting<br>AI rules.</h2>
+      <p>Get started in seconds. Define once, spec everywhere.</p>
+      <div class="cta-actions">
+        <a href="https://github.com/fernandomenuk/openspec" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          View on GitHub
+        </a>
+        <a href="https://github.com/fernandomenuk/openspec#quick-start" class="btn btn-secondary">Read the Docs</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ──────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <span>OpenSpec &mdash; MIT License</span>
+    <ul class="footer-links">
+      <li><a href="https://github.com/fernandomenuk/openspec">GitHub</a></li>
+      <li><a href="https://github.com/fernandomenuk/openspec/issues">Issues</a></li>
+      <li><a href="https://github.com/fernandomenuk/openspec/blob/master/CHANGELOG.md">Changelog</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Mobile nav
+  const style = document.createElement('style');
+  style.textContent = `
+    @media (max-width: 640px) {
+      .nav-links.show {
+        display: flex !important;
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: rgba(5, 5, 16, 0.95);
+        backdrop-filter: blur(20px);
+        padding: 20px 24px;
+        border-bottom: 1px solid var(--border);
+        gap: 16px;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+</script>
+
+</body>
+</html>

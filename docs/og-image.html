@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  /* Render this at 1200x630 and export as og-image.png */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px;
+    height: 630px;
+    background: #050510;
+    font-family: 'Inter', -apple-system, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(99,102,241,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99,102,241,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 80%);
+  }
+  .glow1 {
+    position: absolute;
+    top: -200px;
+    left: -100px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(ellipse, rgba(99,102,241,0.12) 0%, transparent 70%);
+  }
+  .glow2 {
+    position: absolute;
+    bottom: -200px;
+    right: -100px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(ellipse, rgba(167,139,250,0.08) 0%, transparent 70%);
+  }
+  .content {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+  }
+  .logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .logo-text {
+    font-size: 28px;
+    font-weight: 700;
+    color: #e2e8f0;
+    letter-spacing: -0.01em;
+  }
+  h1 {
+    font-size: 72px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    color: #e2e8f0;
+    margin-bottom: 24px;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #6366f1 0%, #a78bfa 40%, #f472b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  p {
+    font-size: 24px;
+    color: #64748b;
+    max-width: 700px;
+    margin: 0 auto 40px;
+  }
+  .targets {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .target {
+    padding: 8px 16px;
+    background: rgba(99,102,241,0.08);
+    border: 1px solid rgba(99,102,241,0.15);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #818cf8;
+  }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="glow1"></div>
+  <div class="glow2"></div>
+  <div class="content">
+    <div class="logo-row">
+      <svg width="44" height="44" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="200" height="200" rx="40" fill="#0f0f23"/>
+        <g transform="translate(50,35)"><rect x="15" y="10" width="70" height="90" rx="8" fill="none" stroke="#6366f1" stroke-width="4"/>
+        <line x1="32" y1="35" x2="70" y2="35" stroke="#6366f1" stroke-width="3" stroke-linecap="round"/>
+        <line x1="32" y1="50" x2="65" y2="50" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round"/>
+        <line x1="32" y1="65" x2="58" y2="65" stroke="#a78bfa" stroke-width="3" stroke-linecap="round"/></g>
+      </svg>
+      <span class="logo-text">OpenSpec</span>
+    </div>
+    <h1>Define once.<br><span>Spec everywhere.</span></h1>
+    <p>The universal AI context transpiler. One source of truth for every AI coding tool.</p>
+    <div class="targets">
+      <span class="target">Claude Code</span>
+      <span class="target">Cursor</span>
+      <span class="target">Copilot</span>
+      <span class="target">Gemini</span>
+      <span class="target">Aider</span>
+      <span class="target">Codex</span>
+      <span class="target">Windsurf</span>
+    </div>
+  </div>
+</body>
+</html>
