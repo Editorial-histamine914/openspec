@@ -133,5 +133,5 @@ tags: [<relevant tags>]
 \`\`\`
 
 Write rules that reflect the **actual patterns** found in the code samples above, not generic best practices.
-After writing the modules, run \`openspec sync\` to generate all AI context files.
+After writing the modules, run \`npx @menukfernando/openspec sync\` to generate all AI context files.
 `;

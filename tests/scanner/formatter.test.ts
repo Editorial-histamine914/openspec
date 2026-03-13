@@ -84,7 +84,7 @@ describe("formatMarkdown", () => {
     expect(output).toContain("frontend.md");
     expect(output).toContain("backend.md");
     expect(output).toContain("testing.md");
-    expect(output).toContain("openspec sync");
+    expect(output).toContain("npx @menukfernando/openspec sync");
   });
 
   it("should use 'Project' as default title when no project name", () => {

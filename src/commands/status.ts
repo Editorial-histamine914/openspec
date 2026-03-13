@@ -14,7 +14,7 @@ export async function runStatus(projectRoot: string): Promise<void> {
   // Modules
   console.log(chalk.bold("Modules:"), chalk.dim(`(${config.modulesDir})`));
   if (modules.length === 0) {
-    console.log(chalk.yellow("  No modules found. Run 'openspec init' to get started."));
+    console.log(chalk.yellow("  No modules found. Run 'npx @menukfernando/openspec init' to get started."));
   } else {
     for (const mod of modules) {
       const name = mod.frontmatter.name ?? mod.slug;
@@ -46,7 +46,7 @@ export async function runStatus(projectRoot: string): Promise<void> {
           ? chalk.green("synced")
           : chalk.yellow("exists (not managed by openspec)");
       } catch {
-        status = chalk.red("missing — run 'openspec sync'");
+        status = chalk.red("missing — run 'npx @menukfernando/openspec sync'");
       }
     }
 

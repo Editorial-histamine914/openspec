@@ -26,7 +26,7 @@ export async function runAnalyze(
   if (!existsSync(openspecDir)) {
     if (!options.quiet) {
       console.log(
-        chalk.yellow("No .openspec/ directory found. Run `openspec init` first.")
+        chalk.yellow("No .openspec/ directory found. Run `npx @menukfernando/openspec init` first.")
       );
     }
     process.exitCode = 1;

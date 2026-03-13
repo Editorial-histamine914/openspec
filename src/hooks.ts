@@ -6,7 +6,7 @@ const HOOK_SCRIPT = `#!/bin/sh
 # To remove: delete this file or run 'openspec hooks --remove'
 
 if command -v npx >/dev/null 2>&1; then
-  npx openspec sync --quiet 2>/dev/null
+  npx @menukfernando/openspec sync --quiet 2>/dev/null
   git add CLAUDE.md .cursorrules GEMINI.md AGENTS.md .aiderrules .windsurfrules .github/copilot-instructions.md 2>/dev/null || true
 fi
 `;
